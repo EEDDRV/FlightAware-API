@@ -3,7 +3,9 @@ import FlightAware
 
 URL = "https://flightaware.com/live/flight/JBU677/history/20210624/1229Z/KJFK/KJAX"
 
-default_Filename = f"A/{FlightAware.Convert_String_to_FlightAware(URL)}"
+
+Folder_Name = f"{FlightAware.Convert_String_to_FlightAware(URL)}"
+default_Filename = f"{Folder_Name}/{FlightAware.Convert_String_to_FlightAware(URL)}"
 
 Data = FlightAware.Flight_Info(URL, default_Filename+"Image_1", default_Filename+"Image_2")
 
