@@ -238,33 +238,4 @@ class Flight_Info:
 		self.Flight_Info = self.Get_Flight_Info(URL, screenshot_page=screenshot_Flight_Info)
 		self.Flight_Info_Table = self.Get_Flight_Info_Table(URL, screenshot_Flight_Info_Table_page)
 		self.File_Name= self.Convert_String_to_FlightAware_KML(URL)
-
 		self.driver.quit()
-		#return [self.Flight_Info, self.Flight_Info_Table]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-if __name__ == '__main__':
-	URL = "https://flightaware.com/live/flight/JBU677/history/20210624/1229Z/KJFK/KJAX"
-	#a = Get_Flight_Info(URL, True)
-	#print(json.dumps(a, indent=4, sort_keys=True))
-	#b = Get_Flight_Info_Table(URL, False)
-	#with open("a.json", 'w') as f:
-	#	json.dump(obj=a, fp=f, indent=2)
