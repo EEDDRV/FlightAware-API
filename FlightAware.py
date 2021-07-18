@@ -233,16 +233,38 @@ class Flight_Info:
 
 
 	def __init__(self, URL, screenshot_Flight_Info="", screenshot_Flight_Info_Table_page=""):
+		if URL != None:
+			self.PATH = "C:\Program Files (x86)\chromedriver.exe"
+			self.chrome_options = Options()
+			self.chrome_options.headless = True
+			self.chrome_options.add_argument('--log-level=3')
+			self.driver = webdriver.Chrome(executable_path=self.PATH, chrome_options=self.chrome_options)
+			sys.stdout.write("\033[F") #back to previous line
+			sys.stdout.write("\033[K") #clear line
+			sys.stdout.write("\033[F") #back to previous line
+			sys.stdout.write("\033[K") #clear line
+
+			self.Flight_Info = self.Get_Flight_Info(URL, screenshot_page=screenshot_Flight_Info)
+			self.Flight_Info_Table = self.Get_Flight_Info_Table(URL, screenshot_Flight_Info_Table_page)
+			self.File_Name= self.Convert_String_to_FlightAware_KML(URL)
+			self.driver.quit()
+	def manual_page_navigation(self):
 		self.PATH = "C:\Program Files (x86)\chromedriver.exe"
 		self.chrome_options = Options()
-		self.chrome_options.headless = True
+		#self.chrome_options.headless = True
 		self.chrome_options.add_argument('--log-level=3')
 		self.driver = webdriver.Chrome(executable_path=self.PATH, chrome_options=self.chrome_options)
 		sys.stdout.write("\033[F") #back to previous line
 		sys.stdout.write("\033[K") #clear line
 		sys.stdout.write("\033[F") #back to previous line
 		sys.stdout.write("\033[K") #clear line
+		self.driver.get("https://flightaware.com/")
+		input("Press enter when ready.")
+		# Get the url from the self.driver
+		return self.driver.current_url
 
+	def get_manual_flight_info(self, screenshot_Flight_Info="", screenshot_Flight_Info_Table_page=""):
+		URL = self.driver.current_url
 		self.Flight_Info = self.Get_Flight_Info(URL, screenshot_page=screenshot_Flight_Info)
 		self.Flight_Info_Table = self.Get_Flight_Info_Table(URL, screenshot_Flight_Info_Table_page)
 		self.File_Name= self.Convert_String_to_FlightAware_KML(URL)
