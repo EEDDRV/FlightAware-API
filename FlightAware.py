@@ -145,11 +145,19 @@ class Flight_Info:
 		Flight_Json["Flight Number"] = self.driver.find_element_by_class_name("flightPageFriendlyIdentLbl").text.split(" ")[1]
 		# Now we input the Actual Distance.
 		Distance = self.driver.find_element_by_xpath("/html/body/div[1]/div[1]/div[2]/div[4]/div[8]/div[3]/div/div/div[3]/div[2]/span").text
-		Flight_Json["Distance"]["Actual"] = Distance.split(" ")[1]
+		# Now we sort between the Distances, begining with the actual distance.
+		# if regex findall of Actual:\s[0-9]+
+		if len(re.findall(r'Actual:\s[0-9]+', Distance)):
+			Flight_Json["Distance"]["Actual"] = re.findall(r'Actual:\s[0-9]+', Distance)[0].replace("Actual: ", "")
+		else: Flight_Json["Distance"]["Actual"] = "N/A"
 		# Now we input the Planned Distance.
-		Flight_Json["Distance"]["Planned"] = Distance.split(" ")[4]
+		if len(re.findall(r'Planned:\s[0-9]+', Distance)):
+			Flight_Json["Distance"]["Planned"] = re.findall(r'Planned:\s[0-9]+', Distance)[0].replace("Planned: ", "")
+		else: Flight_Json["Distance"]["Planned"] = "N/A"
 		# Now we input the Direct Distance.
-		Flight_Json["Distance"]["Direct"] = Distance.split(" ")[6]
+		if len(re.findall(r'Direct:\s[0-9]+', Distance)):
+			Flight_Json["Distance"]["Direct"] = re.findall(r'Direct:\s[0-9]+', Distance)[0].replace("Direct: ", "")
+		else: Flight_Json["Distance"]["Direct"] = "N/A"
 
 
 
