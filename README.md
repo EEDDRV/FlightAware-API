@@ -3,10 +3,12 @@ The unoffical FlightAware API.
 The FlightAware API is a simple, unoffical API for accessing FlightAware data.
 
 
+# Usage:
+``` cmd
+python Example.py (insert flightaware url here)
+```
 
-
-
-# Basic Usage:
+# Example.py
 ``` py
 import json, os, sys
 import FlightAware

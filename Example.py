@@ -6,7 +6,7 @@ import os, sys
 if len(sys.argv) > 1:
 	URL = sys.argv[1]
 else:
-	URL = "https://flightaware.com/live/flight/AAL2465/history/20210424/1940Z/KJAX/KDFW"
+	URL = "https://flightaware.com/live/flight/DAL5856/history/20211221/2308Z/KJAX/KJFK"
 
 
 Folder_Name = f"{FlightAware.Convert_String_to_FlightAware(URL)}"
